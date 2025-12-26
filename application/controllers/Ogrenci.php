@@ -33,5 +33,13 @@ class Ogrenci extends CI_Controller {
         $this->db->insert('izinler', $data);
         redirect('ogrenci');
     }
+    public function sil($id) {
+    // Güvenlik için: Sadece beklemede olan izinler silinebilir diyebiliriz
+    $this->db->where('id', $id);
+    $this->db->where('durum', 'Beklemede');
+    $this->db->delete('izinler');
+    
+    redirect('ogrenci');
+}
    
 }

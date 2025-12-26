@@ -22,4 +22,12 @@ class Mudur extends CI_Controller {
         $this->db->where('id', $id)->update('izinler', ['durum' => 'Reddedildi']);
         redirect('mudur');
     }
+    public function sil($id) {
+    // Veritabanından ilgili ID'ye sahip kaydı siliyoruz
+    $this->db->where('id', $id);
+    $this->db->delete('izinler');
+    
+    // İşlem bittikten sonra müdür paneline geri dönüyoruz
+    redirect('mudur');
+}
 }
